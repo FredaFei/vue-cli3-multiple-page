@@ -6,15 +6,18 @@ const routes = [
   {
     path: '/child1',
     name: 'child1',
-    component: resolve => require(['@/pages/demo/child-1'], resolve),
+    component: resolve => require(['@/pages/pageC/child-1'], resolve),
     meta: {
-      title: '4'
+      title: 'child1'
     }
   },
   {
     path: '/child2',
     name: 'child2',
-    component: resolve => require(['@/pages/demo/child-2'], resolve)
+    component: resolve => require(['@/pages/pageC/child-2'], resolve),
+    meta: {
+      title: 'child2'
+    }
   }
 ]
 const router = new Router({routes})

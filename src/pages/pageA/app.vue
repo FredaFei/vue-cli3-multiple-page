@@ -1,10 +1,10 @@
 <template>
-  <div class="qx-content">demo 2</div>
+  <div class="content">page A</div>
 </template>
 
 <script>
   export default {
-    name: 'demo2',
+    name: 'pageA',
   }
 </script>
 

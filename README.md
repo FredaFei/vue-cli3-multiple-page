@@ -1,6 +1,10 @@
-### 注意事项
+### vue-cli3-multiple-page
 
 此项目为多页面环境，demo目录为模板目录，可将其复制到pages下，作模块开发的基本环境，是否需要vue-router视该模块而定。
+
+**预览**
+
+http://localhost:8080/[pageName].html
 
 ----
 

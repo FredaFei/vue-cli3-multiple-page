@@ -1,3 +1,3 @@
-import * as home from './home'
+import * as pageB from './pageB'
 
-export default {...home}
+export default { ...pageB }

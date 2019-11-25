@@ -1,15 +1,15 @@
 <template>
-  <div class="qx-content">新人专享 1</div>
+  <div class="content">page B</div>
 </template>
 
 <script>
 import api from '@/api/index'
 export default {
-  name: 'newcomerGift',
+  name: 'pageB',
   created() {
     api.getSlides().then(res => {
       console.log(res)
-    })
+    }, err => { console.log(err) })
   },
 }
 </script>
