@@ -1,0 +1,18 @@
+@import './_var.scss';
+@import './_reset.scss';
+@import './_common.scss';
+
+
+.wrapper-flex {
+  @include flex(flex-start, flex-start);
+  flex-direction: column;
+  .wrapper-hd,
+  .wrapper-bd,
+  .wrapper-ft {
+    width: 100%;
+  }
+  .wrapper-bd {
+    flex: 1;
+    position: relative;
+  }
+}

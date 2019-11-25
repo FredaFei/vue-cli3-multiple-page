@@ -1,0 +1,58 @@
+//html,
+//body {
+//  height: 100vh;
+//  width: 100%;
+//  position: relative;
+//}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  font-family: Helvetica, STHeiti STXihei, Microsoft YaHei, Tohoma, Arial;
+  touch-action: none;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background: #f3f1f2;
+  touch-action: none;
+  font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
+    'Hiragino Sans GB', tahoma, simsun, '宋体';
+  font-size: 14px;
+}
+.clear:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.clear {
+  zoom: 1;
+}
+
+.bg-img {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
