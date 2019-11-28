@@ -7,27 +7,33 @@ class Utils {
     return window[storage].getItem(key) && JSON.parse(window[storage].getItem(key))
   }
 
-  concatSearch(params) {
+  concatSearch(params = {}) {
     let str = '?'
     for (let key in params) {
       str += `${key}=${params[key]}&`
     }
-    return str
+    const len = str.length - 1
+    return len > 0 ? str.substr(0, len) : str.substr(0)
   }
 
   getQueryString(name) {
     const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
-    const href = window.location.href
-    const index = href.indexOf('?')
-    const r = href.substr(index + 1).match(reg)
-    if (r != null) return unescape(r[2])
+    const r = this._getSearch().match(reg)
+    if (r != null) {
+      return unescape(r[2])
+    }
     return null
   }
-
+  _getSearch() {
+    const href = window.location.href
+    const index = href.indexOf('?')
+    return index >= 0 ? href.substr(index + 1) : ''
+  }
   parseQuery() {
-    let str = window.location.search
-    let len = str.length
-    let search = str.substr(1, len - 2)
+    let search = this._getSearch()
+    if (!search) {
+      return false
+    }
     let reg = /([^&=\s]+)[=\s]?([^&=\s]*)/g
     let obj = {}
     while (reg.exec(search)) {
@@ -74,3 +80,4 @@ export function unescapeHTML(str){
   let html = "" + str;
   return html.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&apos;/g, "'");
 }
+
