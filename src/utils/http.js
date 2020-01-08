@@ -3,8 +3,7 @@ import utils from './util'
 
 export function addTokenAndKeyParams(options = {}) {
   const base = {
-    oauth_token: utils.getQueryString('oauth_token'),
-    appkey: utils.getQueryString('appkey')
+    token: utils.getQueryString('token')
   }
   return Object.assign(base, options)
 }

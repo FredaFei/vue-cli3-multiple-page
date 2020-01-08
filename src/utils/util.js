@@ -49,12 +49,11 @@ class Utils {
   }
 }
 
-
 export default new Utils()
 
-export function formatDate(date, fmt='yyyy-MM-dd hh:mm:ss') {
+export function formatDate(date, fmt = 'yyyy-MM-dd hh:mm:ss') {
   if (/(y+)/.test(fmt)) {
-    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
   }
   let o = {
     'M+': date.getMonth() + 1,
@@ -62,22 +61,56 @@ export function formatDate(date, fmt='yyyy-MM-dd hh:mm:ss') {
     'h+': date.getHours(),
     'm+': date.getMinutes(),
     's+': date.getSeconds()
-  };
+  }
   for (let k in o) {
     if (new RegExp(`(${k})`).test(fmt)) {
-      let str = o[k] + '';
-      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+      let str = o[k] + ''
+      fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? str : padLeftZero(str))
     }
   }
   return fmt
 }
 
 function padLeftZero(str) {
-  return ('00' + str).substr(str.length);
+  return ('00' + str).substr(str.length)
 }
-
-export function unescapeHTML(str){
-  let html = "" + str;
-  return html.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+/**
+ * 保留n位小数去尾
+ */
+export function toDecimal2(n) {
+  if (typeof n === 'number' || typeof n === 'string') {
+    const str = (Math.round(n * 100) / 100).toString()
+    const index = str.indexOf('.')
+    if (index === -1) {
+      return str + '.00'
+    }
+    const result = str.substr(0, index + 1)
+    return str.length - (index + 1) >= 2 ? result + str.substr(index + 1, 2) : result + str.substr(index + 1) + '0'
+  }
+  console.error('参数n的类型 只能是number或string')
+  return -1
 }
-
+export function isWeChat() {
+  return /MicroMessenger/i.test(window.navigator.userAgent)
+}
+/**
+ * @return 1是ios，2是安卓
+ */
+export const judgeBrowser = ()=> {
+  return /\(i[^;]+;( U;)? CPU.+Mac OS X/i.test(window.navigator.userAgent) ? 1 : 2
+}
+/**
+ * PC or Mobile
+ */
+export const isMobile = ()=> {
+  return /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i.test(window.navigator.userAgent) 
+}
+export function unescapeHTML(str) {
+  let html = '' + str
+  return html
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+}
