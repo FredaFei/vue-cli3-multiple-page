@@ -74,6 +74,18 @@ export function formatDate(date, fmt = 'yyyy-MM-dd hh:mm:ss') {
 function padLeftZero(str) {
   return ('00' + str).substr(str.length)
 }
+/** 
+ * 使用时需确保DOM已经加载
+*/
+export function setEllipsisWithRow(el, text) {
+  return (suffix, line = 2) => {
+    let fontSize = parseFloat(window.getComputedStyle(el).fontSize)
+    let rowSize = el.getBoundingClientRect().width / fontSize
+    let totalSize = rowSize * line
+    return text.length > totalSize ? text.substring(0, totalSize - suffix.length) + suffix : text
+  }
+}
+
 /**
  * 保留n位小数去尾
  */
